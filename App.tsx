@@ -14,7 +14,6 @@ export default function App() {
   let colorScheme = useColorScheme();
   const theme = useTheme();
   const isLoadingComplete = useCachedResources();
- console.log("huhuhhu",process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY)
   if (!isLoadingComplete) {
     return null;
   } else {
