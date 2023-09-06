@@ -5,7 +5,6 @@ import { MD3LightTheme } from 'react-native-paper';
 const MaterialLightTheme = {
     ...MD3LightTheme,
     "colors": {
-  
       "primary": "rgb(17, 96, 164)",
       "onPrimary": "rgb(255, 255, 255)",
       "primaryContainer": "rgb(211, 228, 255)",

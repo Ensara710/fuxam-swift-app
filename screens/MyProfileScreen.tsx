@@ -1,25 +1,32 @@
 import { useAuth, useUser } from "@clerk/clerk-expo";
 import * as React from "react";
 import { useTheme } from 'react-native-paper';
-import { log } from "../logger";
 import { RootStackScreenProps } from "../types";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Provider as PaperProvider } from 'react-native-paper';
-
-
-//Displays
-import Chat from "../display/Chat";
 import Schedule from "../display/Schedule";
+import CalendarPage from '../display/CalendarPage'; 
+import { useState, useEffect } from "react";
 import Setting from '../display/Settinng'
-import { CalendarCheck2, ChefHat, MessageCircle, MessageSquare, MessagesSquare, Settings } from "lucide-react-native";
-
+import { CalendarCheck2, MessagesSquare, Settings } from "lucide-react-native";
+import { useColorScheme } from "react-native";
+import ChatStackNavigator from "../Chat/ChatStackNavigator";
 
 function MyProfileScreen({ navigation }: RootStackScreenProps<"MyProfile">) {
   const { getToken, signOut } = useAuth();
   const { user } = useUser();
-  const theme = useTheme();
+  const theme = useTheme(); 
   const [sessionToken, setSessionToken] = React.useState("");
   const Tab = createBottomTabNavigator();
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const systemColorScheme = useColorScheme();
+
+  useEffect(() => {
+    setIsDarkMode(systemColorScheme === 'dark');
+  }, [systemColorScheme]);
+
+  const headerBackgroundColor = isDarkMode ? 'rgba(18, 2, 23, 1)' : 'rgba(249, 249, 249, 1)';
+  const headerTintColor = isDarkMode ? 'rgba(249, 249, 249, 1)':'rgba(18, 2, 23, 1)';
 
 
   React.useEffect(() => {
@@ -33,16 +40,16 @@ function MyProfileScreen({ navigation }: RootStackScreenProps<"MyProfile">) {
 
   return (
     <PaperProvider theme={theme}>
-      <Tab.Navigator screenOptions={{headerShown: false, tabBarInactiveTintColor: theme.colors.onBackground }}>
-        <Tab.Screen name="Schedule" component={Schedule} options={{
+      <Tab.Navigator screenOptions={{headerShown: false, tabBarStyle: {backgroundColor: headerBackgroundColor},tabBarInactiveTintColor: theme.colors.onBackground }}>
+        <Tab.Screen name="Schedule" component={CalendarPage} options={{
           tabBarIcon: ({ color }) => ( <CalendarCheck2 size={22} color={color} />
           ),
         }} />
-        <Tab.Screen name="Chat" component={Chat} options={{
+        <Tab.Screen name="Chat" component={ChatStackNavigator} options={{ headerShown: false,
           tabBarIcon: ({ color }) => (
             <MessagesSquare size={24} color={color} /> ),
         }} />
-        <Tab.Screen name="Settings" component={Setting} options={{
+        <Tab.Screen name="Settings" component={Schedule} options={{
           tabBarIcon: ({ color }) => (
             <Settings size={22} color={color} />
           ),
@@ -53,5 +60,4 @@ function MyProfileScreen({ navigation }: RootStackScreenProps<"MyProfile">) {
   );
 }
 
-export default MyProfileScreen; 
-
+export default MyProfileScreen;

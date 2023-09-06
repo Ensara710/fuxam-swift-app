@@ -28,14 +28,13 @@ export const styles = StyleSheet.create({
   },
 
   primaryButton: {
-    width: "90%",
+    height: 45,
+    width: 330,
     borderRadius: 5,
-    height: 50,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
-    backgroundColor: "#000",
-    color: "#ffffff",
+    
   },
 
   primaryButtonText: {

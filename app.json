@@ -12,11 +12,19 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "The app needs to access your calendar."
+        }
+      ] ], 
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "userInterfaceStyle": "automatic",
       "supportsTablet": true,
       "associatedDomains": ["applinks:clerk.helping.lemming-64.lclstage.dev"],
       "bundleIdentifier": "dev.clerk.clerkexpostarter"

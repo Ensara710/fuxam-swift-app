@@ -4,27 +4,42 @@ import SignInScreen from "../screens/SignInScreen";
 import VerifyCodeScreen from "../screens/VerifyCodeScreen";
 import MyProfileScreen from "../screens/MyProfileScreen";
 import { RootStackParamList } from "../types";
+import { useEffect, useState } from "react";
 import { ClerkLoaded, useUser } from "@clerk/clerk-expo";
 import { useTheme } from 'react-native-paper';
 import { useColorScheme } from "react-native";
-import Schedule from "../display/Chat";
 import { NavigationContainer } from "@react-navigation/native";
+import ChatStackNavigator from "../Chat/ChatStackNavigator";
+
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 
 
 const RootNavigator = () => {
-    const { isSignedIn } = useUser();
-    const scheme = useColorScheme();
-    const theme = useTheme();
+    const { isSignedIn } = useUser()
+     const theme = useTheme();
+
+    const [isDarkMode, setIsDarkMode] = useState(false);
+  const systemColorScheme = useColorScheme();
+
+  useEffect(() => {
+    setIsDarkMode(systemColorScheme === 'dark');
+  }, [systemColorScheme]);
+
+  const headerBackgroundColor = isDarkMode ?'rgba(18, 2, 23, 1)' : 'rgba(249, 249, 249, 1)';
+  const headerTintColor = isDarkMode ? 'rgba(249, 249, 249, 1)':'rgba(18, 2, 23, 1)';
+
+
+
+
     return (
 <NavigationContainer theme={theme}> 
         <ClerkLoaded>
 
             <Stack.Navigator screenOptions={{
-                headerStyle: { backgroundColor: theme.colors.background },
-                headerTintColor: theme.colors.onBackground
+                headerStyle: { backgroundColor: headerBackgroundColor },
+                headerTintColor: headerTintColor
             }}>
                 {isSignedIn ? (
                     <> 
@@ -34,8 +49,10 @@ const RootNavigator = () => {
                         name="MyProfile"
                         component={MyProfileScreen}
                         options={{ title: "MyProfile" }}
-                    />
-                  
+                    /> 
+                    <Stack.Screen name="Root"
+                    component={ChatStackNavigator}
+                    options={{headerShown: false}} /> 
 </> 
                 ) : (
                     <>
