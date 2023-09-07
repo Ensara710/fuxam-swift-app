@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import Setting from '../display/Settinng'
 import { CalendarCheck2, MessagesSquare, Settings } from "lucide-react-native";
 import { useColorScheme } from "react-native";
-import ChatStackNavigator from "../Chat/ChatStackNavigator";
+import chatNavigation from "../navigation/chatNavigation";
 
 function MyProfileScreen({ navigation }: RootStackScreenProps<"MyProfile">) {
   const { getToken, signOut } = useAuth();
@@ -45,7 +45,7 @@ function MyProfileScreen({ navigation }: RootStackScreenProps<"MyProfile">) {
           tabBarIcon: ({ color }) => ( <CalendarCheck2 size={22} color={color} />
           ),
         }} />
-        <Tab.Screen name="Chat" component={ChatStackNavigator} options={{ headerShown: false,
+        <Tab.Screen name="Chat " component={chatNavigation} options={{ headerShown: false,
           tabBarIcon: ({ color }) => (
             <MessagesSquare size={24} color={color} /> ),
         }} />

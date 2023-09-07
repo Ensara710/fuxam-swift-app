@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text,} from 'react-native'
 import { useColorScheme } from 'react-native';
 
 
@@ -21,7 +21,7 @@ function Setting() {
 
     return (
         <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: colors.background }}>
-            <Text style={{ color: colors.contrast }}>Hello </Text>
+            <Text style={{color: 'white'}}  > Click here for the Chat</Text>
         </View>
     )
 }

@@ -9,7 +9,6 @@ import { ClerkLoaded, useUser } from "@clerk/clerk-expo";
 import { useTheme } from 'react-native-paper';
 import { useColorScheme } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import ChatStackNavigator from "../Chat/ChatStackNavigator";
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -50,9 +49,7 @@ const RootNavigator = () => {
                         component={MyProfileScreen}
                         options={{ title: "MyProfile" }}
                     /> 
-                    <Stack.Screen name="Root"
-                    component={ChatStackNavigator}
-                    options={{headerShown: false}} /> 
+                      
 </> 
                 ) : (
                     <>

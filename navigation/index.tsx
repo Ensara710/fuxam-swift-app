@@ -1,15 +1,13 @@
 import 'react-native-gesture-handler';
 import * as React from "react";
-import { useState } from "react";
-import { useTheme } from 'react-native-paper';
 import { Provider as PaperProvider } from 'react-native-paper';
 import RootNavigator from "./RootNavigato";
 import { GestureHandlerRootView } from 'react-native-gesture-handler'; 
 
-
 export default function Navigation() {
 
-
+ 
+  
 
   return (
     <GestureHandlerRootView style={{flex: 1}}> 
