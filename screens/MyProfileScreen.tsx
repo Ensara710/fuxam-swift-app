@@ -5,12 +5,11 @@ import { RootStackScreenProps } from "../types";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Provider as PaperProvider } from 'react-native-paper';
 import Schedule from "../display/Schedule";
-import CalendarPage from '../display/CalendarPage'; 
 import { useState, useEffect } from "react";
-import Setting from '../display/Settinng'
+import AppChaaat from '../display/Settinng'
 import { CalendarCheck2, MessagesSquare, Settings } from "lucide-react-native";
 import { useColorScheme } from "react-native";
-import chatNavigation from "../navigation/chatNavigation";
+import App from '../react-native-event-calendar/example/App'; 
 
 function MyProfileScreen({ navigation }: RootStackScreenProps<"MyProfile">) {
   const { getToken, signOut } = useAuth();
@@ -41,11 +40,11 @@ function MyProfileScreen({ navigation }: RootStackScreenProps<"MyProfile">) {
   return (
     <PaperProvider theme={theme}>
       <Tab.Navigator screenOptions={{headerShown: false, tabBarStyle: {backgroundColor: headerBackgroundColor},tabBarInactiveTintColor: theme.colors.onBackground }}>
-        <Tab.Screen name="Schedule" component={CalendarPage} options={{
+        <Tab.Screen name="Schedule" component={App} options={{
           tabBarIcon: ({ color }) => ( <CalendarCheck2 size={22} color={color} />
           ),
         }} />
-        <Tab.Screen name="Chat " component={chatNavigation} options={{ headerShown: false,
+        <Tab.Screen name="Chat" component={AppChaaat} options={{headerShown: false,
           tabBarIcon: ({ color }) => (
             <MessagesSquare size={24} color={color} /> ),
         }} />

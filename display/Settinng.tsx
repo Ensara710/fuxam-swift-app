@@ -1,28 +1,41 @@
-import React from 'react'
-import { View, Text,} from 'react-native'
-import { useColorScheme } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Text, View } from 'react-native';
+import NavigationStack from '../ChatApp/AppChat';
+import { Platform } from 'react-native';
+import { ThemeProvider } from 'stream-chat-expo';
+import { AppProvider } from '../ChatApp/AppContext'; 
 
+const isIOS = Platform.OS === 'ios';
 
-function Setting() {
-    type ColorSchemeName = 'light' | 'dark' | undefined;
-    const colorScheme = useColorScheme() as 'light' | 'dark' | undefined;
+export const theme = {
+  messageList: {
+    container: {
+      backgroundColor: 'blue',
+    },
+  },
+};
 
-    const colorSchemes = {
-        light: {
-          background: 'rgba(249, 249, 249, 1)',
-        contrast: 'rgba(5, 14, 63, 1)',
-        },
-        dark: {
-          background:'rgba(18, 2, 23, 1)',
-          contrast: 'rgba(225, 241, 250, 1)',
-        },
-      };
-  const colors = colorSchemes[colorScheme || 'light'];
-
-    return (
-        <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: colors.background }}>
-            <Text style={{color: 'white'}}  > Click here for the Chat</Text>
-        </View>
-    )
+export default function AppChaaat(){  
+  return( 
+    <>
+      { isIOS ? (
+        <NavigationContainer independent={true}> 
+          <NavigationStack/> 
+        </NavigationContainer>
+      ) : (
+        <AppProvider> 
+        <SafeAreaView style={{flex: 1, backgroundColor: 'blue'}}> 
+        <ThemeProvider style={theme}> 
+          <NavigationContainer independent={true}> 
+            <NavigationStack/> 
+          </NavigationContainer>
+          </ThemeProvider>
+        </SafeAreaView>
+        </AppProvider>
+      )}
+    </>
+  )
 }
-export default Setting; 

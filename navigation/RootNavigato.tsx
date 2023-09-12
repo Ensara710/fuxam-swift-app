@@ -10,10 +10,7 @@ import { useTheme } from 'react-native-paper';
 import { useColorScheme } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
-
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
-
 
 const RootNavigator = () => {
     const { isSignedIn } = useUser()
@@ -29,11 +26,8 @@ const RootNavigator = () => {
   const headerBackgroundColor = isDarkMode ?'rgba(18, 2, 23, 1)' : 'rgba(249, 249, 249, 1)';
   const headerTintColor = isDarkMode ? 'rgba(249, 249, 249, 1)':'rgba(18, 2, 23, 1)';
 
-
-
-
     return (
-<NavigationContainer theme={theme}> 
+<NavigationContainer independent={true} theme={theme}> 
         <ClerkLoaded>
 
             <Stack.Navigator screenOptions={{
@@ -42,14 +36,13 @@ const RootNavigator = () => {
             }}>
                 {isSignedIn ? (
                     <> 
-                     
+                    
 
                     <Stack.Screen
                         name="MyProfile"
                         component={MyProfileScreen}
                         options={{ title: "MyProfile" }}
                     /> 
-                      
 </> 
                 ) : (
                     <>

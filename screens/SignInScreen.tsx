@@ -5,7 +5,6 @@ import { log } from "../logger";
 import { RootStackScreenProps } from "../types";
 import { OAuthButtons } from "../components/OAuth";
 import { styles } from "../components/Styles";
-import { useTheme } from 'react-native-paper';
 import { useColorScheme } from "react-native";
 
 
@@ -100,7 +99,7 @@ const theme = colorSchemes[colorScheme!];
       <Image source={require('../assets/images/logo.png')} style={{ height: 60, width: 60 }} />
       <Text style={{ color: theme.contrast, fontSize: 30, fontWeight: '700', marginBottom: 4 }}> Sign In</Text>
       <Text style={{ color: theme.contrast, fontSize: 14, fontWeight: '500', marginBottom: 46}}> With Fuxam</Text>
-      <View style={{ height: 43, width: 330, borderRadius: 10, borderColor: theme.border, borderWidth: 1, marginBottom: 20 }}>
+      <View style={{ height: 43, width: 380, borderRadius: 10, borderColor: theme.border, borderWidth: 1, marginBottom: 20 }}>
         <TextInput
           autoCapitalize="none"
           value={emailAddress}
@@ -113,7 +112,7 @@ const theme = colorSchemes[colorScheme!];
         />
       </View>
 
-      <View style={{ height: 43, width: 330, borderRadius: 10, borderColor: theme.border, borderWidth: 1, marginBottom: 20 }}>
+      <View style={{ height: 43, width: 380, borderRadius: 10, borderColor: theme.border, borderWidth: 1, marginBottom: 20 }}>
         <TextInput
           value={password}
           style={[styles.textInput, { color: theme.contrast}]}
@@ -125,7 +124,7 @@ const theme = colorSchemes[colorScheme!];
         />
       </View>
 
-      <TouchableOpacity style={[styles.primaryButton, { backgroundColor: theme.contrast, borderRadius: 10 }]} onPress={onSignInPress}>
+      <TouchableOpacity style={[styles.primaryButton, { backgroundColor: theme.contrast, borderRadius: 10, width: 380}]} onPress={onSignInPress}>
         <Text style={[styles.primaryButtonText, { color: theme.background }]}>Sign in</Text>
       </TouchableOpacity>
 
@@ -137,8 +136,8 @@ const theme = colorSchemes[colorScheme!];
         <View style={{ flex: 1, height: 1, backgroundColor: theme.contrast }} />
       </View>
 
-      <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <View style={[styles.oauthView, { backgroundColor: theme.background, }]}>
+      <View style={[styles.container, { backgroundColor: theme.background,}]}>
+        <View style={[styles.oauthView, { backgroundColor: theme.background,width: 380 }]}>
           <OAuthButtons />
         </View>
       </View>
