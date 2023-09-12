@@ -5,7 +5,6 @@ import { registerRootComponent } from "expo";
 
 
 import { name as appName } from './app.json';
-
 AppRegistry.registerComponent(appName, () => App)
 
 registerRootComponent(App);
